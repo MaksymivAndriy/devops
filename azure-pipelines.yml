@@ -9,12 +9,12 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+#variables:
+  #startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+
 steps:
 - script: echo $(last_tag)!
-  displayName: 'Run a one-line script'
+  displayName: 'Run a one-line script' 
 
-- script: |
-    $tags = git tag --sort=-creatordate
-    $tag = $tags[0]
-    echo $tag
+- script: "$tags = git tag --sort=-creatordate && $tag = $tags[0] && echo $tag"
   displayName: 'Run a multi-line script'

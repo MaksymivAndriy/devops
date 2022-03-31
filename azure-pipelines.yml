@@ -17,7 +17,7 @@ pool:
   #startsWith(variables['Build.SourceBranch'], 'refs/tags/')
 
 steps:
-- script: echo $(last_tag)!
+- bash: $tag = 'git describe --tags' && echo $tag 
   displayName: 'Run a one-line script' 
 
 - bash: echo $tags

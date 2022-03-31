@@ -20,5 +20,5 @@ steps:
 - script: echo $(last_tag)!
   displayName: 'Run a one-line script' 
 
-- script: echo $tags
+- bash: echo $tags
   displayName: 'Run a multi-line script'

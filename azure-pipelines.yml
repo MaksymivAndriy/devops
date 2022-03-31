@@ -15,8 +15,9 @@ pool:
   #startsWith(variables['Build.SourceBranch'], 'refs/tags/')
 
 steps:
-- bash: $tag = 'git describe --tags' && echo $tag 
-  displayName: 'Run a one-line script' 
-
-- bash: echo $tags
-  displayName: 'Run a multi-line script'
+- powershell: [string]$version = (git describe --tags) -replace "[^0-9, .]", ''
+ $dotCount = $version.Length - ($version -replace "[^0-9]", '').Length
+for($i = 1; $i -le 5; $i++){
+if ($dotCount -lt 2 ) {
+"$version" + ".0." + "$i" }
+else { "$version" + "." + "$i" } }

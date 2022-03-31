@@ -17,6 +17,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      git tag 1.2_dev
       [string]$version = ((git describe --tags) -replace "(?<=-).*", '') -replace "[^0-9, .]", ''
       $dotCount = $version.Length - ($version -replace "[^0-9]", '').Length
       for($i = 1; $i -le 5; $i++){

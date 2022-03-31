@@ -4,7 +4,12 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+ branches:
+  include:
+    - main
+ tags:
+    include:
+      - all
 
 pool:
   vmImage: ubuntu-latest
@@ -16,5 +21,5 @@ steps:
 - script: echo $(last_tag)!
   displayName: 'Run a one-line script' 
 
-- script: "$tags = git tag --sort=-creatordate && $tag = $tags[0] && echo $tag"
+- script: echo $tags
   displayName: 'Run a multi-line script'

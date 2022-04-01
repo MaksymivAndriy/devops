@@ -4,8 +4,10 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
-  
+  tags:
+    include:
+    - '*'
+
 pool:
   vmImage: 'windows-2022'
 
@@ -25,4 +27,4 @@ steps:
       $version = "$version" + ".0"}
 - bash: echo "##vso[task.setvariable variable=vers]$version"
 
-name: $(vers)$(Rev:.r)
+name: $tags$(Rev:.r)

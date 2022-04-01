@@ -18,3 +18,6 @@ steps:
     script: |
       [string]$version = ((git describe --tags) -replace "(?<=-).*", '') -replace "[^0-9, .]", ''
       $dotCount = $version.Length - ($version -replace "[^0-9]", '').Length
+      if ($dotCount -lt 2 ) {
+      "$version" + ".0." + "$(Build.BuildNumber)" }
+      else { "$version" + "." + "$(Build.BuildNumber)" }

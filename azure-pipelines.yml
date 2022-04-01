@@ -10,10 +10,11 @@ pool:
   vmImage: 'windows-2022'
 
 steps:
+
+- script: echo '$(Build.BuildNumber)'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
       [string]$version = ((git describe --tags) -replace "(?<=-).*", '') -replace "[^0-9, .]", ''
       $dotCount = $version.Length - ($version -replace "[^0-9]", '').Length
-      
